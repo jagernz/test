@@ -15,20 +15,16 @@ use Carbon\Carbon;
 class DefaultController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $now = Carbon::now();
+        $now = Carbon::now()->toTimeString();
+
         $userAuth = Auth::user()->name;
         $user = DB::table('users')->where('name', $userAuth)->first();
+
 	    return view('default.index')->with([
             'user' => $user,
             'now' => $now,
         ]);
-
     }
 }

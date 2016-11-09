@@ -4,6 +4,4 @@
 
 jQuery(document).ready( function(){
 
-  jQuery('.testing_jQuery').append('<span>Успешно</span>');
-
 });
