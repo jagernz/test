@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="_token" content="{{ csrf_token() }}">
 	<title>Test</title>
 	<link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -37,11 +38,15 @@
 			</ul>
 
 			<ul class="nav navbar-nav">
-				<li class='active'><a href="{{ url('/setStart') }}">Начать работу</a></li>
+				<li><a href="#"><span data-id="{{ $user->id  }}" class="start">Начать работу</span></a></li>
+			</ul>
+
+			<ul class="nav navbar-nav">
+				<li><a href="#"><span class="stop">Перерыв</span></a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="/logout">Выйти</a></li>
+				<li><a href="{{'/logout'}}">Выйти</a></li>
 			</ul>
 
 		</div><!--/.nav-collapse -->
@@ -53,6 +58,7 @@
 </div>
 
 <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 
 </body>

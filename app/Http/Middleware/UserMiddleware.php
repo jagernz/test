@@ -17,7 +17,11 @@ class UserMiddleware
      */
     public function handle($request, Closure $next)
     {
-
+        /*
+         * Проверяем если роль у аутентифицированного пользователя
+         * соответствует роли АДМИНА отправляем на соответствующую
+         * страницу
+         */
         if (Auth::user()->role_id == 2) {
             return redirect('/admin');
         }

@@ -11,18 +11,51 @@
 	|
 	*/
 
+	/*
+	 * Запуск аутентификации пользователя
+	 */
 	Route::auth();
-
+	/*
+	 * Программа пропускает только аутентифицированных пользователей.
+	 */
 	Route::group(['middleware' => ['auth']], function(){
-
+		/*
+		 * Маршруты доступные пользователям с ролью АДМИН
+		 */
 		Route::group(['middleware' => ['admin']], function(){
+			/*
+			 * Дефолтная страничка админа с пользователями
+			 */
 			Route::get('/admin', 'Dashboard\DashboardController@index');
+			/*
+			 * Маршрут для удаления пользователя (без AJAX)
+			 */
 			Route::get('/admin/del/{id}', 'Dashboard\DashboardController@deleteUser');
+			/*
+			 * Регистрируем нового пользователя (без проверки на валидность)
+			 */
+			Route::post('/register', 'Auth\AuthController@registerUser');
 		});
-
+		/*
+		 * Маршруты доступные польщователям с ролью ЮЗЕР
+		 */
 		Route::group(['middleware' => ['user']], function(){
+			/*
+			 * Дефолтная отработка для юзера
+			 */
 			Route::get('/', 'DefaultController@index');
+			/*
+			 * Профиль пользователя
+			 */
 			Route::get('/home', 'HomeController@index');
+			/*
+			 * Маршрут который AJAX-ом делает отметку насчет начала работы
+			 */
+			Route::post('/startWork', 'Api\AjaxController@start');
+			/*
+			 * Маршрут который принимает AJAX-запрос насчет перерыва в работе
+			 */
+			Route::post('/sentComment', 'Api\AjaxController@comment');
 		});
 
 	});

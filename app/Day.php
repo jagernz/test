@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class Day extends Model
 {
-	protected $table = 'roles';
+	protected $table = 'day';
 	public $guarded = [''];
+	public $timestamps = false;
 }

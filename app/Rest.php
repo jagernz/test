@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class Rest extends Model
 {
-	protected $table = 'roles';
+	protected $table = 'rest';
 	public $guarded = [''];
+
 }

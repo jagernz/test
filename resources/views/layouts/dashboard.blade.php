@@ -33,7 +33,7 @@
 			</ul>
 
 			<ul class="nav navbar-nav">
-				<li><a href="{{ url('/users') }}">Пользователи</a></li>
+				<li class="active"><a href="{{ url('/users') }}">Пользователи</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav">
