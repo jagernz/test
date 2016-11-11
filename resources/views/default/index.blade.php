@@ -21,18 +21,19 @@
             </div>
 
             <div class="modal-body">
-              <form method="post">
+              <form method="post" id="myForm">
                 {{ csrf_field() }}
                 <div class="form-group">
                   <label for="message-text" class="control-label">Комментарий о причине перерыва</label>
                   <textarea class="form-control" id="message-text" name="comment"></textarea>
                 </div>
                 <input type="hidden" value="{{ $user->id  }}" id="getUserId">
-                <input type="hidden" value="{{ $now  }}" id="getResTime">
-                <input type="hidden" value="{{ $day  }}" id="getResDay">
+                <input type="hidden" value="{{ $now }}" id="getResTime">
+                <input type="hidden" value="{{ $day }}" id="getResDay">
                 <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id="saveComment">Перерыв</button>
-                  </div>
+                  <button type="button" class="btn btn-info" id="saveComment">Отправить комментарий</button>
+                  <button type="button" class="btn btn-primary" id="continueWork">Продолжить работу</button>
+                </div>
               </form>
             </div>
 

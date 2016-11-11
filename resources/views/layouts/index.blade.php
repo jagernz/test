@@ -21,28 +21,49 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="">Учет рабочего времени</a>
+			<a class="navbar-brand" href="#">Учет рабочего времени</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 
 			<ul class="nav navbar-nav">
-				<li><a class="disabled" href="">Привет, {{Auth::user()->name}}</a></li>
+				<li><a class="disabled" href="#">Привет, {{ Auth::user()->name }}</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav">
-				<li><a href="/home">Личный кабинет</a></li>
+				<li><a href="{{ url('/home') }}">Личный кабинет</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav">
-				<li><a href=>Серверное время: {{ $now }}</a></li>
+				<li><a href='{{ url('/') }}'>Серверное время: {{ $now }}</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav">
-				<li><a href="#"><span data-id="{{ $user->id  }}" class="start">Начать работу</span></a></li>
+				<li>
+					<a href="#">
+						<span data-id="{{ $user->id }}" class="start">
+							Начать работу
+						</span>
+					</a>
+				</li>
 			</ul>
 
 			<ul class="nav navbar-nav">
-				<li><a href="#"><span class="stop">Перерыв</span></a></li>
+				<li>
+					<a href="#">
+						<span class="stop">
+							Перерыв
+						</span>
+					</a>
+				</li>
+			</ul>
+
+			<ul class="nav navbar-nav">
+				<li><a href="#">
+						<span class="end">
+							Завершить работу
+						</span>
+					</a>
+				</li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

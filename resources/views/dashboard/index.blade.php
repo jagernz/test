@@ -3,7 +3,7 @@
 @section('content')
 <hr>
 
-	<form class="form-horizontal" method="post" action="{{ url('/register')  }}">
+	<form class="form-horizontal" method="post" action="{{ action('Auth\AuthController@registerUser')  }}">
 		{{ csrf_field() }}
 		<div class="form-group">
 			<label for="inputName" class="col-sm-2 control-label">Имя</label>
@@ -66,6 +66,15 @@
 
 			</tbody>
 		</table>
-	</div>.
+
+<hr>
+
+<div class="container">
+		@foreach($usersComments as $userComment)
+			<p>Пользователь {{ $userComment->name}} оставила комментарий "{{ $userComment->comments }}" по поводу своего перерыва от {{ $userComment->created_at }} до {{ $userComment->updated_at }}.</p>
+			@endforeach
+</div>
+
+	</div>
 
 @endsection

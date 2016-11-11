@@ -8,5 +8,4 @@ class Rest extends Model
 {
 	protected $table = 'rest';
 	public $guarded = [''];
-
 }

@@ -15,31 +15,36 @@
 	 * Запуск аутентификации пользователя
 	 */
 	Route::auth();
+
 	/*
 	 * Программа пропускает только аутентифицированных пользователей.
 	 */
-	Route::group(['middleware' => ['auth']], function(){
+	Route::group(['middleware' => ['auth']], function () {
 		/*
 		 * Маршруты доступные пользователям с ролью АДМИН
 		 */
-		Route::group(['middleware' => ['admin']], function(){
+		Route::group([
+				'middleware' => ['admin'],
+				'prefix'     => 'admin'
+		], function () {
 			/*
 			 * Дефолтная страничка админа с пользователями
 			 */
-			Route::get('/admin', 'Dashboard\DashboardController@index');
+			Route::get('/', 'Dashboard\DashboardController@index');
 			/*
 			 * Маршрут для удаления пользователя (без AJAX)
 			 */
-			Route::get('/admin/del/{id}', 'Dashboard\DashboardController@deleteUser');
+			Route::get('/del/{id}', 'Dashboard\DashboardController@deleteUser');
 			/*
 			 * Регистрируем нового пользователя (без проверки на валидность)
 			 */
 			Route::post('/register', 'Auth\AuthController@registerUser');
 		});
+
 		/*
 		 * Маршруты доступные польщователям с ролью ЮЗЕР
 		 */
-		Route::group(['middleware' => ['user']], function(){
+		Route::group(['middleware' => ['user']], function () {
 			/*
 			 * Дефолтная отработка для юзера
 			 */
@@ -56,6 +61,13 @@
 			 * Маршрут который принимает AJAX-запрос насчет перерыва в работе
 			 */
 			Route::post('/sentComment', 'Api\AjaxController@comment');
+			/*
+			 * Маршрут который принимает AJAX-запрос об окончании перерыва в работе
+			 */
+			Route::post('/endOfRest', 'Api\AjaxController@endRest');
+			/*
+			 * Маршрут который принимает AJAX-запрос об окончании окончании рабочего дня			 */
+			Route::post('/end', 'Api\AjaxController@endOfDay');
 		});
 
 	});
